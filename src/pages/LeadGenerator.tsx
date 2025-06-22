@@ -4,31 +4,32 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, MapPin, Target, Download } from "lucide-react";
+import { ArrowLeft, MapPin, Target, Download, CheckCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
 
 const LeadGenerator = () => {
   const navigate = useNavigate();
   const [location, setLocation] = useState("");
   const [niche, setNiche] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!location.trim() || !niche.trim()) {
-      toast.error("Please fill in both location and niche fields");
       return;
     }
 
     setIsSubmitting(true);
+    setShowSuccess(false);
     
     // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
-      toast.success("Excel sheet generated successfully!");
-      // Here you would typically trigger the download
+      setShowSuccess(true);
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => setShowSuccess(false), 5000);
     }, 2000);
   };
 
@@ -56,8 +57,8 @@ const LeadGenerator = () => {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-          {/* Left Column - Instructions */}
-          <div className="space-y-6 sm:space-y-8 animate-fade-in order-2 lg:order-1">
+          {/* Left Column - Instructions (shows first on mobile) */}
+          <div className="space-y-6 sm:space-y-8 animate-fade-in order-1 lg:order-1">
             <div className="space-y-3 sm:space-y-4">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#141414] leading-tight">
                 Generate Lead Excel Sheet in Just{" "}
@@ -117,8 +118,8 @@ const LeadGenerator = () => {
             </div>
           </div>
 
-          {/* Right Column - Form */}
-          <div className="animate-fade-in order-1 lg:order-2" style={{ animationDelay: "0.2s" }}>
+          {/* Right Column - Form (shows second on mobile) */}
+          <div className="animate-fade-in order-2 lg:order-2" style={{ animationDelay: "0.2s" }}>
             <Card className="bg-gray-50 border-0 shadow-lg rounded-2xl sm:rounded-3xl overflow-hidden">
               <CardContent className="p-6 sm:p-8">
                 <div className="space-y-4 sm:space-y-6">
@@ -177,6 +178,16 @@ const LeadGenerator = () => {
                         </div>
                       )}
                     </Button>
+
+                    {/* Success Message */}
+                    {showSuccess && (
+                      <div className="flex items-center space-x-2 p-3 bg-green-50 border border-green-200 rounded-lg animate-fade-in">
+                        <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
+                        <p className="text-green-800 text-sm font-medium">
+                          Excel sheet generated successfully!
+                        </p>
+                      </div>
+                    )}
                   </form>
                 </div>
               </CardContent>
