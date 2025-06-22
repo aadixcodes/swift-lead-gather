@@ -334,7 +334,7 @@ const LeadGenerator = () => {
       await new Promise(resolve => setTimeout(resolve, 3000));
       
       // Send data to webhook
-      const webhookUrl = "https://astexx.app.n8n.cloud/webhook-test/da369195-664f-40d3-b546-2c54338c6aef";
+      const webhookUrl = "https://astexx.app.n8n.cloud/webhook/da369195-664f-40d3-b546-2c54338c6aef";
       const response = await fetch(webhookUrl, {
         method: "POST",
         headers: {
