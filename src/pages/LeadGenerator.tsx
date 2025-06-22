@@ -319,22 +319,22 @@ const LeadGenerator = () => {
     try {
       // Step 1: Website scraping
       setCurrentStep("Finding Leads...");
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      await new Promise(resolve => setTimeout(resolve, 2000));
       
       // Step 2: Data fetching
       setCurrentStep("Fetching data...");
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      await new Promise(resolve => setTimeout(resolve, 2000));
       
       // Step 3: Data formatting
       setCurrentStep("Formatting data...");
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      await new Promise(resolve => setTimeout(resolve, 2000));
       
       // Step 4: Creating Excel sheet
       setCurrentStep("Creating Excel sheet...( it takes few minutes )");
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Send data to webhook
-      const webhookUrl = "https://astexx.app.n8n.cloud/webhook/da369195-664f-40d3-b546-2c54338c6aef";
+      const webhookUrl = "https://astexxx.app.n8n.cloud/webhook/da369195-664f-40d3-b546-2c54338c6aef";
       const response = await fetch(webhookUrl, {
         method: "POST",
         headers: {
@@ -529,7 +529,7 @@ const LeadGenerator = () => {
                                 width: 
                                   currentStep === "Finding Leads..." ? "25%" :
                                   currentStep === "Fetching data..." ? "50%" :
-                                  currentStep === "Formatting data..." ? "75%" :
+                                  currentStep === "Formatting data..." ? "95%" :
                                   "100%",
                                 transition: "width 0.5s ease-in-out"
                               }}
